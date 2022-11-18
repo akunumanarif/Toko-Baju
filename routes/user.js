@@ -7,8 +7,8 @@ router.get("/usertest", (req, res) => {
 });
 
 router.post("/newUser", (req, res) => {
-  const username = req.body.params;
-  console.log(username);
+  const username = req.body.username;
+  res.send(username);
 });
 
 export default router;
