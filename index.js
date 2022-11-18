@@ -11,6 +11,8 @@ mongoose
   .then(() => console.log("MongoDB connection Succesful"))
   .catch((err) => console.log(err));
 
+app.use(express.json());
+
 app.use("/api/user", userRoute);
 
 const PORT = process.env.PORT || 5000;
