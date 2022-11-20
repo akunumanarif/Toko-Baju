@@ -1,7 +1,10 @@
 import express from "express";
 import { route } from "express/lib/router";
 import { UserModel } from "../models/userModels.js";
-import { verifyTokenAndAuth } from "../routes/verifyToken.js";
+import {
+  verifyTokenAndAdmin,
+  verifyTokenAndAuth,
+} from "../routes/verifyToken.js";
 const router = express.Router();
 
 //? Update Route
@@ -35,6 +38,19 @@ router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
   try {
     await UserModel.findByIdAndDelete(req.params.id);
     res.status(200).json("User has been deleted");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//? Get Spesific User Route
+
+router.delete("/find/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.id);
+
+    const { password, ...others } = user._doc;
+    res.status(200).json(others);
   } catch (error) {
     res.status(500).json(error);
   }
