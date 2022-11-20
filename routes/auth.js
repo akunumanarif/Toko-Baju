@@ -43,14 +43,16 @@ router.post("/login", async (req, res) => {
     const accessToken = jwt.sign(
       {
         id: currenUser._id,
-        isAdmin: isAdmin,
+        isAdmin: currenUser.isAdmin,
       },
-      process.env.JWT_SCRT
+      process.env.JWT_SCRT,
+      { expiresIn: "3d" }
     );
 
     const { password, email, ...others } = currenUser._doc;
 
-    res.status(200).json(others);
+    // res.status(200).json(others);
+    res.status(200).json({ ...others, accessToken });
   } catch (error) {
     res.status(500).json(error);
   }
