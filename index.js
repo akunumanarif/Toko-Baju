@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import userRoute from "./routes/user.js";
 import regRoute from "./routes/auth.js";
 import productRoute from "./routes/product.js";
+import cartRoute from "./routes/cart.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api/auth", regRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
+app.use("/api/cart", cartRoute);
 
 const PORT = process.env.PORT || 5000;
 
