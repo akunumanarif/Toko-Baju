@@ -1,10 +1,7 @@
 import express from "express";
 // import { route } from "express/lib/router";
 import { ProductModel } from "../models/productModel.js";
-import {
-  verifyTokenAndAdmin,
-  verifyTokenAndAuth,
-} from "../routes/verifyToken.js";
+import { verifyTokenAndAdmin } from "../routes/verifyToken.js";
 const router = express.Router();
 
 //? CREATE NEW PRODUCT
