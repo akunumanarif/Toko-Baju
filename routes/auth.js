@@ -28,9 +28,9 @@ router.post("/login", async (req, res) => {
   try {
     const currenUser = await UserModel.findOne({
       username: req.body.username,
-      email: req.body.email,
+      // email: req.body.email,
     });
-    !currenUser && res.status(401).json("Wrong Credential");
+    !currenUser.username && res.status(401).json("Wrong Credential");
 
     const decryptedPass = CryptoJS.AES.decrypt(
       currenUser.password,
