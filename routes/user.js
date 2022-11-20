@@ -56,4 +56,15 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
+//? Get All User Route
+
+router.get("/all", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 export default router;
