@@ -1,5 +1,9 @@
 import jwt from "jsonwebtoken";
 
+//? Middlewares
+
+//? VerifyToken for Function
+
 export const verifyToken = (req, res, next) => {
   const authHeader = req.headers.token;
 
@@ -15,6 +19,8 @@ export const verifyToken = (req, res, next) => {
   }
 };
 
+//? VerifyToken for Reguler user
+
 export const verifyTokenAndAuth = (req, res, next) => {
   verifyToken(req, res, () => {
     if (req.user.id === req.params.id || req.userData.isAdmin) {
@@ -24,6 +30,9 @@ export const verifyTokenAndAuth = (req, res, next) => {
     }
   });
 };
+
+//? VerifyToken for Admin user
+
 export const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
     if (req.userData.isAdmin) {

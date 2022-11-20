@@ -3,6 +3,8 @@ import { UserModel } from "../models/userModels.js";
 import { verifyTokenAndAuth } from "../routes/verifyToken.js";
 const router = express.Router();
 
+//? Update Route
+
 router.put("/:id", verifyTokenAndAuth, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
