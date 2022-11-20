@@ -60,7 +60,10 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
 
 router.get("/all", verifyTokenAndAdmin, async (req, res) => {
   try {
-    const users = await UserModel.find();
+    const query = req.query.new;
+    const users = query
+      ? await UserModel.find().sort({ _id: -1 }).limit(2)
+      : await UserModel.find();
     res.status(200).json(users);
   } catch (error) {
     res.status(500).json(error);
