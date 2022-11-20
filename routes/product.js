@@ -1,14 +1,24 @@
 import express from "express";
 // import { route } from "express/lib/router";
-import { ProductModel } from "../models/userModels.js";
+import { ProductModel } from "../models/productModel.js";
 import {
   verifyTokenAndAdmin,
   verifyTokenAndAuth,
 } from "../routes/verifyToken.js";
 const router = express.Router();
 
-// //? Update Route
+//? CREATE NEW PRODUCT
 
+router.post("/", verifyTokenAndAdmin, async (req, res) => {
+  const newProduct = new ProductModel(req.body);
+
+  try {
+    const addProduct = await newProduct.save();
+    res.status(201).json(addProduct);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 // router.put("/:id", verifyTokenAndAuth, async (req, res) => {
 //   if (req.body.password) {
 //     req.body.password = CryptoJS.AES.encrypt(
