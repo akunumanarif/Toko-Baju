@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const verifyToken = (req, res, next) => {
+export const verifyToken = (req, res, next) => {
   const authHeader = req.headers.token;
 
   if (authHeader) {
@@ -14,7 +14,7 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-const verifyTokenAndAuth = (req, res, next) => {
+export const verifyTokenAndAuth = (req, res, next) => {
   verifyToken(req, res, () => {
     if (req.userData.id === req.params.id || req.userData.isAdmin) {
       next();
@@ -24,4 +24,4 @@ const verifyTokenAndAuth = (req, res, next) => {
   });
 };
 
-module.exports = { verifyToken, verifyTokenAndAuth };
+// module.exports = { verifyToken, verifyTokenAndAuth };
