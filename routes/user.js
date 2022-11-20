@@ -45,7 +45,7 @@ router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
 
 //? Get Spesific User Route
 
-router.delete("/find/:id", verifyTokenAndAdmin, async (req, res) => {
+router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id);
 
