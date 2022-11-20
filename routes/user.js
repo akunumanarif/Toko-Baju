@@ -1,16 +1,29 @@
 import express from "express";
 import { UserModel } from "../models/userModels.js";
+import { verifyTokenAndAuth } from "../routes/verifyToken.js";
 const router = express.Router();
 
-// router.get("/usertest", async (req, res) => {
-//   const users = await UserModel.find();
-//   res.json(users);
-//   //   res.send("Server is running");
-// });
+router.put("/:id", verifyTokenAndAuth, async (req, res) => {
+  if (req.body.password) {
+    req.body.password = CryptoJS.AES.encrypt(
+      req.body.password,
+      process.env.SCRT_K
+    ).toString();
+  }
 
-// router.post("/newUser", (req, res) => {
-//   const username = req.body.username;
-//   res.send(username);
-// });
+  try {
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+
+    res.status(202).json(updatedUser);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 export default router;
