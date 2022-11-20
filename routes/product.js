@@ -36,7 +36,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-// //? Delete Route
+//? DELETE PRODUCT
 
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
@@ -47,18 +47,17 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-// //? Get Spesific User Route
+//? GET SPESIFIC PRODUCT
 
-// router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     const user = await UserModel.findById(req.params.id);
+router.get("/find/:id", async (req, res) => {
+  try {
+    const product = await ProductModel.findById(req.params.id);
 
-//     const { password, ...others } = user._doc;
-//     res.status(200).json(others);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 // //? Get All User Route
 
