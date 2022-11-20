@@ -25,8 +25,11 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const currenUser = await UserModel.findOne({ username: req.body.username });
-    !currenUser && res.status(401).json("User doesn't exist");
+    const currenUser = await UserModel.findOne({
+      username: req.body.username,
+      email: req.body.email,
+    });
+    !currenUser && res.status(401).json("Wrong Credential");
 
     const decryptedPass = CryptoJS.AES.decrypt(
       currenUser.password,
