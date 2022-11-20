@@ -59,19 +59,31 @@ router.get("/find/:id", async (req, res) => {
   }
 });
 
-// //? Get All User Route
+//? GET ALL PRODUCTS
 
-// router.get("/all", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     const query = req.query.new;
-//     const users = query
-//       ? await UserModel.find().sort({ _id: -1 }).limit(5)
-//       : await UserModel.find();
-//     res.status(200).json(users);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+router.get("/all", async (req, res) => {
+  try {
+    let products;
+    const queryNew = req.query.new;
+    const queryCat = req.query.category;
+
+    if (queryNew) {
+      products = await ProductModel.find().sort({ createdAt: -1 }).limit(5);
+    } else if (queryCat) {
+      products = await ProductModel.find({
+        categories: {
+          $in: [queryCat],
+        },
+      });
+    } else {
+      products = await ProductModel.find();
+    }
+
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 // //? Get User Statistic
 
