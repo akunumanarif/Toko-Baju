@@ -50,7 +50,7 @@ router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
 
 router.get("/find/:userId", verifyTokenAndAuth, async (req, res) => {
   try {
-    const cart = await CartModel.findById(req.params.id);
+    const cart = await CartModel.find({ userId: req.params.userId });
 
     res.status(200).json(cart);
   } catch (error) {
