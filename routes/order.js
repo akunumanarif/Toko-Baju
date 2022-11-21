@@ -36,7 +36,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-//? DELETE CART
+//? DELETE ORDER
 
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
