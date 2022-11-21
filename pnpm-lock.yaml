@@ -7,6 +7,7 @@ specifiers:
   jsonwebtoken: ^8.5.1
   mongoose: ^6.7.2
   nodemon: ^2.0.20
+  stripe: ^11.1.0
 
 dependencies:
   crypto-js: 4.1.1
@@ -15,6 +16,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   mongoose: 6.7.2
   nodemon: 2.0.20
+  stripe: 11.1.0
 
 packages:
 
@@ -1629,6 +1631,14 @@ packages:
   /statuses/2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
     engines: {node: '>= 0.8'}
+    dev: false
+
+  /stripe/11.1.0:
+    resolution: {integrity: sha512-erOslPQZSYKOotQjmKRy4eBon/tdhzLIYzBdPSNVWDdatSQozkkPlh8mVeXNwubYYZYx61/yS23eWiGDF93z2w==}
+    engines: {node: '>=12.*'}
+    dependencies:
+      '@types/node': 18.11.9
+      qs: 6.11.0
     dev: false
 
   /strnum/1.0.5:
