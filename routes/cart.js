@@ -19,29 +19,28 @@ router.post("/", verifyTokenAndAuth, async (req, res) => {
     res.status(500).json(error);
   }
 });
-// //? UPDATE PRODUCT
-// router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     const updatedProduct = await ProductModel.findByIdAndUpdate(
-//       req.params.id,
-//       {
-//         $set: req.body,
-//       },
-//       { new: true }
-//     );
-//     const { password, ...others } = updatedProduct._doc;
-//     res.status(202).json(others);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+//? UPDATE PRODUCT
+router.put("/:id", verifyTokenAndAuth, async (req, res) => {
+  try {
+    const updatedCart = await CartModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(202).json(updatedCart);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 // //? DELETE PRODUCT
 
-// router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+// router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
 //   try {
-//     await ProductModel.findByIdAndDelete(req.params.id);
-//     res.status(200).json("Product has been deleted");
+//     await CartModel.findByIdAndDelete(req.params.id);
+//     res.status(200).json("Cart has been deleted");
 //   } catch (error) {
 //     res.status(500).json(error);
 //   }
