@@ -11,7 +11,7 @@ const router = express.Router();
 //? CREATE NEW ORDER
 
 router.post("/", verifyToken, async (req, res) => {
-  const newOrder = new CartModel(req.body);
+  const newOrder = new OrderModel(req.body);
 
   try {
     const addOrder = await newOrder.save();
@@ -65,6 +65,38 @@ router.get("/all", verifyTokenAndAdmin, async (req, res) => {
   try {
     const orders = await OrderModel.find();
     res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//? GET MONTHLY INCOME
+
+router.get("/incomes", verifyTokenAndAdmin, async (req, res) => {
+  const date = new Date();
+  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
+  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
+
+  try {
+    const incomes = await OrderModel.aggregate([
+      {
+        $match: { createdAt: { $gte: previousMonth } },
+      },
+      {
+        $project: {
+          month: { $month: "$createdAt" },
+          sales: "$amount",
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          total: { $sum: "$sales" },
+        },
+      },
+    ]);
+
+    res.status(200).json(incomes);
   } catch (error) {
     res.status(500).json(error);
   }
