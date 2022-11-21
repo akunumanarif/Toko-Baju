@@ -7,18 +7,18 @@ import {
 } from "../routes/verifyToken.js";
 const router = express.Router();
 
-//? CREATE NEW CART
+//? CREATE NEW ORDER
 
-// router.post("/", verifyTokenAndAuth, async (req, res) => {
-//   const newCart = new CartModel(req.body);
+router.post("/", verifyTokenAndAuth, async (req, res) => {
+  const newOrder = new CartModel(req.body);
 
-//   try {
-//     const addCart = await newCart.save();
-//     res.status(201).json(addCart);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+  try {
+    const addOrder = await newOrder.save();
+    res.status(201).json(addOrder);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 // //? UPDATE PRODUCT
 // router.put("/:id", verifyTokenAndAuth, async (req, res) => {
 //   try {
