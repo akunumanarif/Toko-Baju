@@ -7,6 +7,7 @@ import regRoute from "./routes/auth.js";
 import productRoute from "./routes/product.js";
 import cartRoute from "./routes/cart.js";
 import orderRoute from "./routes/order.js";
+import cors from "cors";
 
 dotenv.config();
 
@@ -17,6 +18,10 @@ mongoose
 
 app.use(express.json());
 
+//? CORS
+app.use(cors());
+
+//? ROUTES
 app.use("/api/auth", regRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
