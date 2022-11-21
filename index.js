@@ -7,6 +7,7 @@ import regRoute from "./routes/auth.js";
 import productRoute from "./routes/product.js";
 import cartRoute from "./routes/cart.js";
 import orderRoute from "./routes/order.js";
+import stripeRoute from "./routes/stripe.js";
 import cors from "cors";
 
 dotenv.config();
@@ -27,6 +28,7 @@ app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/order", orderRoute);
+app.use("/api/checkout", stripeRoute);
 
 const PORT = process.env.PORT || 5000;
 
