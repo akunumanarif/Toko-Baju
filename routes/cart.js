@@ -35,7 +35,7 @@ router.put("/:id", verifyTokenAndAuth, async (req, res) => {
   }
 });
 
-//? DELETE PRODUCT
+//? DELETE CART
 
 router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
   try {
@@ -46,17 +46,17 @@ router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
   }
 });
 
-// //? GET SPESIFIC PRODUCT
+//? GET SPESIFIC CART
 
-// router.get("/find/:id", async (req, res) => {
-//   try {
-//     const product = await ProductModel.findById(req.params.id);
+router.get("/find/:id", async (req, res) => {
+  try {
+    const cart = await CartModel.findById(req.params.id);
 
-//     res.status(200).json(product);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+    res.status(200).json(cart);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 // //? GET ALL PRODUCTS
 
