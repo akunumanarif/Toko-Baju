@@ -19,21 +19,21 @@ router.post("/", verifyTokenAndAuth, async (req, res) => {
     res.status(500).json(error);
   }
 });
-// //? UPDATE PRODUCT
-// router.put("/:id", verifyTokenAndAuth, async (req, res) => {
-//   try {
-//     const updatedCart = await CartModel.findByIdAndUpdate(
-//       req.params.id,
-//       {
-//         $set: req.body,
-//       },
-//       { new: true }
-//     );
-//     res.status(202).json(updatedCart);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+//? UPDATE ORDER
+router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const updatedOrder = await OrderModel.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(202).json(updatedOrder);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 // //? DELETE CART
 
