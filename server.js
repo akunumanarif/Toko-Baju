@@ -12,14 +12,8 @@ import cors from "cors";
 
 dotenv.config();
 
-// mongoose
-//   .connect(process.env.MONGO_URI)
-//   .then(() => console.log("MongoDB connection Succesful"))
-//   .catch((err) => console.log(err));
 mongoose
-  .connect(
-    "mongodb+srv://numanarif:akunumanarif@cluster0.ecx0a.mongodb.net/shop?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connection Succesful"))
   .catch((err) => console.log(err));
 
