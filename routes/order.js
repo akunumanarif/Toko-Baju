@@ -2,6 +2,7 @@ import express from "express";
 // import { route } from "express/lib/router";
 import { OrderModel } from "../models/orderModel.js";
 import {
+  verifyToken,
   verifyTokenAndAdmin,
   verifyTokenAndAuth,
 } from "../routes/verifyToken.js";
@@ -9,7 +10,7 @@ const router = express.Router();
 
 //? CREATE NEW ORDER
 
-router.post("/", verifyTokenAndAuth, async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   const newOrder = new CartModel(req.body);
 
   try {
