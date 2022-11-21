@@ -59,15 +59,15 @@ router.get("/find/:userId", verifyTokenAndAuth, async (req, res) => {
   }
 });
 
-// //? GET ALL CART
+//? GET ALL ORDER
 
-// router.get("/all", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     const carts = await CartModel.find();
-//     res.status(200).json(carts);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+router.get("/all", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const orders = await OrderModel.find();
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 export default router;
