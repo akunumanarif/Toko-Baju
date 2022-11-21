@@ -5,7 +5,7 @@ const stripe = new Stripe()(process.env.STRIPE_KEY);
 
 //? CREATE PAYMENT
 
-router.post("/", async (req, res) => {
+router.post("/payment", async (req, res) => {
   stripe.charges.create(
     {
       source: req.body.tokenId,
