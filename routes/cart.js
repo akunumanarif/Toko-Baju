@@ -58,30 +58,15 @@ router.get("/find/:userId", verifyTokenAndAuth, async (req, res) => {
   }
 });
 
-// //? GET ALL PRODUCTS
+//? GET ALL CART
 
-// router.get("/all", async (req, res) => {
-//   try {
-//     let products;
-//     const queryNew = req.query.new;
-//     const queryCat = req.query.category;
-
-//     if (queryNew) {
-//       products = await ProductModel.find().sort({ createdAt: -1 }).limit(5);
-//     } else if (queryCat) {
-//       products = await ProductModel.find({
-//         categories: {
-//           $in: [queryCat],
-//         },
-//       });
-//     } else {
-//       products = await ProductModel.find();
-//     }
-
-//     res.status(200).json(products);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+router.get("/all", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const carts = await CartModel.find();
+    res.status(200).json(carts);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 export default router;
