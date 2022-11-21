@@ -46,9 +46,9 @@ router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
   }
 });
 
-//? GET SPESIFIC CART
+//? GET SPESIFIC USER CART
 
-router.get("/find/:id", async (req, res) => {
+router.get("/find/:userId", verifyTokenAndAuth, async (req, res) => {
   try {
     const cart = await CartModel.findById(req.params.id);
 
