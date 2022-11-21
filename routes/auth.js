@@ -33,15 +33,19 @@ router.post("/login", async (req, res) => {
       username: req.body.username,
       // email: req.body.email,
     });
-    !currenUser.username && res.status(401).json("Wrong Credential");
+
+    if (!currenUser) {
+      return res.status(401).json("Wrong Username");
+    }
 
     const decryptedPass = CryptoJS.AES.decrypt(
       currenUser.password,
       process.env.SCRT_K
     );
     const correctPassword = decryptedPass.toString(CryptoJS.enc.Utf8);
-    correctPassword !== req.body.password &&
-      res.status(401).json("Wrong Credential");
+    if (correctPassword !== req.body.password) {
+      return res.status(401).json("Wrong password");
+    }
 
     const accessToken = jwt.sign(
       {
@@ -55,7 +59,7 @@ router.post("/login", async (req, res) => {
     const { password, email, ...others } = currenUser._doc;
     res.status(200).json({ ...others, accessToken });
   } catch (error) {
-    res.status(500).json(error);
+    console.log(error);
   }
 });
 
