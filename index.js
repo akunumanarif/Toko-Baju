@@ -19,6 +19,11 @@ mongoose
 
 app.use(express.json());
 
+//? Main Route
+app.get("/", (req, res) => {
+  res.send("Welcome to Toko Baju REST API");
+});
+
 //? CORS
 app.use(cors());
 
