@@ -21,7 +21,19 @@ app.use(express.json());
 
 //? Main Route
 app.get("/", (req, res) => {
-  res.send("Welcome to Toko Baju REST API");
+  res.json({
+    message: {
+      welcome: "Welcome to Toko Baju REST API",
+      routes: {
+        authentication: "/api/auth",
+        user: "/api/user",
+        products: "/api/product",
+        cart: "/api/cart",
+        order: "/api/order",
+        checkout: "/api/checkout",
+      },
+    },
+  });
 });
 
 //? CORS
