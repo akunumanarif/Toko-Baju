@@ -35,16 +35,16 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-// //? DELETE CART
+//? DELETE CART
 
-// router.delete("/:id", verifyTokenAndAuth, async (req, res) => {
-//   try {
-//     await CartModel.findByIdAndDelete(req.params.id);
-//     res.status(200).json("Cart has been deleted");
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    await OrderModel.findByIdAndDelete(req.params.id);
+    res.status(200).json("Oder has been deleted");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 // //? GET SPESIFIC USER CART
 
