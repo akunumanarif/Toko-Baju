@@ -47,17 +47,17 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-// //? GET SPESIFIC USER CART
+//? GET USER ORDER
 
-// router.get("/find/:userId", verifyTokenAndAuth, async (req, res) => {
-//   try {
-//     const cart = await CartModel.find({ userId: req.params.userId });
+router.get("/find/:userId", verifyTokenAndAuth, async (req, res) => {
+  try {
+    const order = await OrderModel.find({ userId: req.params.userId });
 
-//     res.status(200).json(cart);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
+    res.status(200).json(order);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 // //? GET ALL CART
 
