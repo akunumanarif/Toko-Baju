@@ -14,6 +14,7 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
     res.status(201).json(addProduct);
   } catch (error) {
     res.status(500).json(error);
+    console.log(error);
   }
 });
 //? UPDATE PRODUCT
