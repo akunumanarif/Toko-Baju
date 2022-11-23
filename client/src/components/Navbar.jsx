@@ -3,6 +3,7 @@ import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import imgLogo from "./icon.png";
 
 const Container = styled.div`
   height: 60px;
@@ -47,10 +48,10 @@ const Center = styled.div`
   text-align: center;
 `;
 
-const Logo = styled.h1`
-  font-weight: bold;
-  ${mobile({ fontSize: "24px" })}
-`;
+// const Logo = styled.h1`
+//   font-weight: bold;
+//   ${mobile({ fontSize: "24px" })}
+// `;
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -78,7 +79,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>LAMA.</Logo>
+          <img src={imgLogo} width="10%" alt="" />
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>
