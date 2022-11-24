@@ -132,7 +132,7 @@ const Product = () => {
       } catch (error) {}
     };
     fetchProduct();
-  }, []);
+  }, [id]);
 
   return (
     <Container>
