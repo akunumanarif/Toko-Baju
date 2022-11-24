@@ -42,7 +42,7 @@ app.use(cors());
 //? ROUTES
 app.use("/api/auth", regRoute);
 app.use("/api/user", userRoute);
-app.use("/api/product", productRoute);
+app.use("/api/products", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/order", orderRoute);
 app.use("/api/checkout", stripeRoute);
