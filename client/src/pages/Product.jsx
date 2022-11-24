@@ -127,7 +127,7 @@ const Product = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = publicReq.get("/product" + id);
+        const res = await publicReq.get("/product/find/" + id);
         setProducts(res.data);
       } catch (error) {}
     };
