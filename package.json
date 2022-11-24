@@ -20,6 +20,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2",
     "nodemon": "^2.0.20",
+    "react-loading-skeleton": "^3.1.0",
     "stripe": "^11.1.0"
   }
 }
