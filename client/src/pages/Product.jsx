@@ -120,14 +120,14 @@ const Button = styled.button`
 
 const Product = () => {
   const location = useLocation();
-  const cat = location.pathname.split("/")[2];
+  const id = location.pathname.split("/")[2];
 
   const [products, setProducts] = useState({});
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await publicReq.get("/product/find/" + id);
+        const res = await publicReq.get("/products/find/" + id);
         setProducts(res.data);
       } catch (error) {}
     };
@@ -140,7 +140,7 @@ const Product = () => {
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+          <Image src={products.img} />
         </ImgContainer>
         <InfoContainer>
           <Title>Denim Jumpsuit</Title>
