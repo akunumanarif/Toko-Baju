@@ -1,5 +1,4 @@
 import { Add, Remove } from "@material-ui/icons";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -7,6 +6,7 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
+import { publicReq } from "../reqMethod";
 import { mobile } from "../responsive";
 
 const Container = styled.div``;
@@ -127,9 +127,11 @@ const Product = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = axios.get();
+        const res = publicReq.get("/product" + id);
+        setProducts(res.data);
       } catch (error) {}
     };
+    fetchProduct();
   }, []);
 
   return (
