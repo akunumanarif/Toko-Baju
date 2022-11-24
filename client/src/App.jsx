@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+      <RouterProvider router={router} />;
+    </SkeletonTheme>
+  );
 };
 
 export default App;
