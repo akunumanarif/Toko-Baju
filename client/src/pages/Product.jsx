@@ -1,3 +1,6 @@
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 import { Add, Remove } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -14,7 +17,7 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection: "column" })}
+  height: 100vh ${mobile({ padding: "10px", flexDirection: "column" })};
 `;
 
 const ImgContainer = styled.div`
@@ -143,7 +146,7 @@ const Product = () => {
           <Image src={products.img} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
+          <Title>{products.title}</Title>
           <Desc>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
             venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
@@ -151,7 +154,7 @@ const Product = () => {
             tristique tortor pretium ut. Curabitur elit justo, consequat id
             condimentum ac, volutpat ornare.
           </Desc>
-          <Price>$ 20</Price>
+          <Price>{products.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
