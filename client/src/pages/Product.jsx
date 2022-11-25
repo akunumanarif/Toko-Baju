@@ -126,11 +126,13 @@ const Product = () => {
   const id = location.pathname.split("/")[2];
 
   const [products, setProducts] = useState({});
+  const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const res = await publicReq.get("/products/find/" + id);
+        setisLoading(false);
         setProducts(res.data);
       } catch (error) {}
     };
@@ -143,10 +145,12 @@ const Product = () => {
       <Announcement />
       <Wrapper>
         <ImgContainer>
+          {isLoading && <Skeleton width="100%" height="90vh" />}
           <Image src={products.img} />
         </ImgContainer>
+
         <InfoContainer>
-          <Title>{products.title}</Title>
+          <Title>{products.title || <Skeleton />}</Title>
           <Desc>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
             venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
@@ -154,7 +158,7 @@ const Product = () => {
             tristique tortor pretium ut. Curabitur elit justo, consequat id
             condimentum ac, volutpat ornare.
           </Desc>
-          <Price>{products.price}</Price>
+          <Price>{products.price || <Skeleton />}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
