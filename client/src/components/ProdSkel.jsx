@@ -22,6 +22,10 @@ const Info = styled.div`
   cursor: pointer;
 `;
 
+const ContainerWrapper = styled.div`
+  display: flex;
+`;
+
 const Container = styled.div`
   flex: 1;
   margin: 5px;
@@ -89,10 +93,10 @@ const Comp = () => {
 
 const ProdSkel = () => {
   return (
-    <>
+    <ContainerWrapper>
       <Comp></Comp>
       <Comp></Comp>
-    </>
+    </ContainerWrapper>
   );
 };
 
