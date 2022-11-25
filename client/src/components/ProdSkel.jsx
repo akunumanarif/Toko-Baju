@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import {
+  FavoriteBorderOutlined,
+  SearchOutlined,
+  ShoppingCartOutlined,
+} from "@material-ui/icons";
 const Info = styled.div`
   opacity: 0;
   width: 100%;
@@ -67,7 +72,6 @@ const ProdSkel = () => {
     <Container>
       <Circle />
       <Skeleton width="200px" height="200px" />
-      {/* <Image src={item.img} /> */}
       <Info>
         <Icon>
           <ShoppingCartOutlined />
@@ -82,3 +86,5 @@ const ProdSkel = () => {
     </Container>
   );
 };
+
+export default ProdSkel;
