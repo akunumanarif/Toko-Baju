@@ -67,7 +67,7 @@ const Icon = styled.div`
   }
 `;
 
-const ProdSkel = () => {
+const Comp = () => {
   return (
     <Container>
       <Circle />
@@ -84,6 +84,15 @@ const ProdSkel = () => {
         </Icon>
       </Info>
     </Container>
+  );
+};
+
+const ProdSkel = () => {
+  return (
+    <>
+      <Comp></Comp>
+      <Comp></Comp>
+    </>
   );
 };
 
