@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Product from "./Product";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ProdSkel from "./ProdSkel";
 
 const Container = styled.div`
   padding: 20px;
@@ -13,6 +14,7 @@ const Container = styled.div`
 const Products = ({ cat, sort, filters }) => {
   const [products, setProducts] = useState([]);
   const [filteredProd, setFilteredProd] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -22,6 +24,7 @@ const Products = ({ cat, sort, filters }) => {
             ? `http://localhost:5000/api/products?category=${cat}`
             : `http://localhost:5000/api/products`
         );
+        setisLoading(false);
         setProducts(res.data);
         // console.log(res.data);
       } catch (error) {
@@ -58,14 +61,33 @@ const Products = ({ cat, sort, filters }) => {
     }
   }, [sort]);
 
+  // const resProdFilter = () => {
+  //   return filteredProd.map((item) => {
+  //     <Product item={item} key={item._id} />;
+  //   });
+  // };
+
+  // const resProd = () => {
+  //   return products.slice(0, 8).map((item) => {
+  //     <Product item={item} key={item._id} /> || (
+  //       <Skeleton key={item._id} width="280px" height="350px" />
+  //     );
+  //   });
+  // };
+
   return (
-    <Container>
-      {cat
-        ? filteredProd.map((item) => <Product item={item} key={item._id} />)
-        : products
-            .slice(0, 8)
-            .map((item) => <Product item={item} key={item._id} />)}
-    </Container>
+    <>
+      {isLoading && <ProdSkel></ProdSkel>}
+      <Container>
+        {cat
+          ? filteredProd.map((item) => {
+              return <Product item={item} key={item._id} />;
+            })
+          : products.slice(0, 8).map((item) => {
+              return <Product item={item} key={item._id} />;
+            })}
+      </Container>
+    </>
   );
 };
 
