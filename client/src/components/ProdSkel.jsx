@@ -1,5 +1,6 @@
 import styled from "styled-components";
-
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 const Info = styled.div`
   opacity: 0;
   width: 100%;
@@ -65,7 +66,7 @@ const ProdSkel = () => {
   return (
     <Container>
       <Circle />
-
+      <Skeleton width="200px" height="200px" />
       {/* <Image src={item.img} /> */}
       <Info>
         <Icon>
