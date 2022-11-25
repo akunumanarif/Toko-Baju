@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Product from "./Product";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ProdSkel from "./ProdSkel";
+import ProdSkel from "../skelComp/ProdSkel";
 
 const Container = styled.div`
   padding: 20px;
@@ -60,20 +60,6 @@ const Products = ({ cat, sort, filters }) => {
       setFilteredProd((prev) => [...prev].sort((a, b) => b.price - a.price));
     }
   }, [sort]);
-
-  // const resProdFilter = () => {
-  //   return filteredProd.map((item) => {
-  //     <Product item={item} key={item._id} />;
-  //   });
-  // };
-
-  // const resProd = () => {
-  //   return products.slice(0, 8).map((item) => {
-  //     <Product item={item} key={item._id} /> || (
-  //       <Skeleton key={item._id} width="280px" height="350px" />
-  //     );
-  //   });
-  // };
 
   return (
     <>
