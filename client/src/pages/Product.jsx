@@ -142,13 +142,15 @@ const Product = () => {
     fetchProduct();
   }, [id]);
 
-  const handleClick = (type) => {
+  const handleAmount = (type) => {
     if (type === "decrease") {
       amount > 1 && setAmount(amount - 1);
     } else {
       setAmount(amount + 1);
     }
   };
+
+  const handleClick = () => {};
 
   return (
     <Container>
@@ -182,11 +184,11 @@ const Product = () => {
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove onClick={() => handleClick("decrease")} />
+              <Remove onClick={() => handleAmount("decrease")} />
               <Amount>{amount}</Amount>
-              <Add onClick={() => handleClick("increase")} />
+              <Add onClick={() => handleAmount("increase")} />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={() => handleClick()}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
