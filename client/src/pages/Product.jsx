@@ -127,6 +127,7 @@ const Product = () => {
 
   const [products, setProducts] = useState({});
   const [isLoading, setisLoading] = useState(true);
+  const [amount, setAmount] = useState(4);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -138,6 +139,14 @@ const Product = () => {
     };
     fetchProduct();
   }, [id]);
+
+  const handleClick = (type) => {
+    if (type === "decrease") {
+      amount > 0 && setAmount(amount - 1);
+    } else {
+      setAmount(amount + 1);
+    }
+  };
 
   return (
     <Container>
@@ -171,9 +180,9 @@ const Product = () => {
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={() => handleClick("decrease")} />
+              <Amount>{amount}</Amount>
+              <Add onClick={() => handleClick("increase")} />
             </AmountContainer>
             <Button>ADD TO CART</Button>
           </AddContainer>
