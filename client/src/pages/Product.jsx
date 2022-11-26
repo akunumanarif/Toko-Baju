@@ -11,6 +11,8 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { publicReq } from "../reqMethod";
 import { mobile } from "../responsive";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
 
@@ -127,9 +129,10 @@ const Product = () => {
 
   const [products, setProducts] = useState({});
   const [isLoading, setisLoading] = useState(true);
-  const [amount, setAmount] = useState(4);
+  const [amount, setAmount] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -150,7 +153,9 @@ const Product = () => {
     }
   };
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    dispatch(addProduct({ ...products, amount, color, size }));
+  };
 
   return (
     <Container>
@@ -188,7 +193,7 @@ const Product = () => {
               <Amount>{amount}</Amount>
               <Add onClick={() => handleAmount("increase")} />
             </AmountContainer>
-            <Button onClick={() => handleClick()}>ADD TO CART</Button>
+            <Button onClick={handleClick}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
