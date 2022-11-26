@@ -142,7 +142,7 @@ const Product = () => {
 
   const handleClick = (type) => {
     if (type === "decrease") {
-      amount > 0 && setAmount(amount - 1);
+      amount > 1 && setAmount(amount - 1);
     } else {
       setAmount(amount + 1);
     }
