@@ -128,6 +128,8 @@ const Product = () => {
   const [products, setProducts] = useState({});
   const [isLoading, setisLoading] = useState(true);
   const [amount, setAmount] = useState(4);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -166,12 +168,12 @@ const Product = () => {
             <Filter>
               <FilterTitle>Color</FilterTitle>
               {products.color?.map((e) => (
-                <FilterColor color={e} key={e} />
+                <FilterColor color={e} key={e} onClick={() => setColor(e)} />
               ))}
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize>
+              <FilterSize onChange={(e) => setSize(e.target.value)}>
                 {products.size?.map((e) => (
                   <FilterSizeOption key={e}>{e}</FilterSizeOption>
                 ))}
