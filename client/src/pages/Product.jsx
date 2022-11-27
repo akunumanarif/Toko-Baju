@@ -157,7 +157,7 @@ const Product = () => {
   };
 
   const notify = () => {
-    toast.warn("Please select color and size", {
+    toast.info("Please select color and size", {
       position: toast.POSITION.TOP_CENTER,
     });
   };
@@ -215,7 +215,7 @@ const Product = () => {
         <Newsletter />
         <Footer />
       </Container>
-      <ToastContainer />
+      <ToastContainer autoClose={2000} />
     </>
   );
 };
