@@ -88,7 +88,6 @@ const Product = ({ item }) => {
           </Icon>
         </Info>
       </Container>
-      )
     </>
   );
 };
