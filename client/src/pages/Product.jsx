@@ -156,7 +156,11 @@ const Product = () => {
     }
   };
 
-  const notify = () => toast("Please pick a color and size");
+  const notify = () => {
+    toast.warn("Please select color and size", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
 
   const handleClick = () => {
     if (color.length !== 0 && size.length !== 0) {
