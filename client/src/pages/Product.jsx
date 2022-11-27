@@ -157,8 +157,9 @@ const Product = () => {
   };
 
   const notify = () => {
-    toast.info("Please select color and size", {
+    toast.error("Please select color and size", {
       position: toast.POSITION.TOP_CENTER,
+      className: "background-color: red",
     });
   };
 
