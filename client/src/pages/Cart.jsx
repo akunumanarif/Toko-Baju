@@ -157,6 +157,7 @@ const Button = styled.button`
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  // console.log(cart);
   return (
     <Container>
       <Navbar />
@@ -173,8 +174,8 @@ const Cart = () => {
         </Top>
         <Bottom>
           <Info>
-            {cart.products.map((product) => (
-              <Product key={product._id}>
+            {cart.products.map((product, index) => (
+              <Product key={index}>
                 <ProductDetail>
                   <Image src={product.img} />
                   <Details>
@@ -196,7 +197,9 @@ const Cart = () => {
                     <ProductAmount>{product.amount}</ProductAmount>
                     <Remove />
                   </ProductAmountContainer>
-                  <ProductPrice>Rp.{product.price}</ProductPrice>
+                  <ProductPrice>
+                    Rp.{product.price * product.amount}
+                  </ProductPrice>
                 </PriceDetail>
               </Product>
             ))}
@@ -206,7 +209,7 @@ const Cart = () => {
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>Rp. {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -218,7 +221,7 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>Rp. {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECKOUT NOW</Button>
           </Summary>
