@@ -155,6 +155,7 @@ const Product = () => {
       setAmount(amount + 1);
     }
   };
+
   const notify = () => toast("Please pick a color and size");
 
   const handleClick = () => {
