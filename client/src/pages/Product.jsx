@@ -15,7 +15,7 @@ import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 
-import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer, Flip } from "react-toastify";
 
 const Container = styled.div``;
 
@@ -215,7 +215,7 @@ const Product = () => {
         <Newsletter />
         <Footer />
       </Container>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={2000} transition={Flip} />
     </>
   );
 };
