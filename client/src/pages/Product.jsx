@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 
 import { toast, ToastContainer, Flip } from "react-toastify";
+import Products from "../components/Products";
 
 const Container = styled.div``;
 
@@ -213,9 +214,11 @@ const Product = () => {
             </AddContainer>
           </InfoContainer>
         </Wrapper>
+        <Products />
         <Newsletter />
         <Footer />
       </Container>
+
       <ToastContainer autoClose={2000} transition={Flip} />
     </>
   );
