@@ -160,7 +160,6 @@ const Product = () => {
   const handleClick = () => {
     if (color.length !== 0 && size.length !== 0) {
       dispatch(addProduct({ ...products, amount, color, size }));
-      console.log(color);
     } else {
       notify();
     }
