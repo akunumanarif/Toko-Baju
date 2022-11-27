@@ -157,27 +157,12 @@ const Product = () => {
   };
   const notify = () => toast("Please pick a color and size");
 
-  // const handleSize = (e) => {
-  //   e.target.value && setSize(e.target.value);
-
-  //   console.log(e.target.value);
-  // };
-  // const handleColor = (c) => {
-  //   c && setColor(c);
-  //   console.log(color);
-  // };
-
   const handleClick = () => {
     if (color.length !== 0 && size.length !== 0) {
       dispatch(addProduct({ ...products, amount, color, size }));
       console.log(color);
     } else {
-      console.log(products);
-      console.log(color);
-      console.log(size);
       notify();
-      // dispatch(notify());
-      // toast("Please pick a color and size");
     }
   };
 
