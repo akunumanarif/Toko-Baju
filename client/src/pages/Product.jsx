@@ -13,6 +13,9 @@ import { publicReq } from "../reqMethod";
 import { mobile } from "../responsive";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
+
+import { toast, ToastContainer } from "react-toastify";
 
 const Container = styled.div``;
 
@@ -130,8 +133,8 @@ const Product = () => {
   const [products, setProducts] = useState({});
   const [isLoading, setisLoading] = useState(true);
   const [amount, setAmount] = useState(1);
-  const [color, setColor] = useState("");
-  const [size, setSize] = useState("");
+  const [color, setColor] = useState([]);
+  const [size, setSize] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -152,54 +155,79 @@ const Product = () => {
       setAmount(amount + 1);
     }
   };
+  const notify = () => toast("Please pick a color and size");
+
+  // const handleSize = (e) => {
+  //   e.target.value && setSize(e.target.value);
+
+  //   console.log(e.target.value);
+  // };
+  // const handleColor = (c) => {
+  //   c && setColor(c);
+  //   console.log(color);
+  // };
 
   const handleClick = () => {
-    dispatch(addProduct({ ...products, amount, color, size }));
+    if (color.length !== 0 && size.length !== 0) {
+      dispatch(addProduct({ ...products, amount, color, size }));
+      console.log(color);
+    } else {
+      console.log(products);
+      console.log(color);
+      console.log(size);
+      notify();
+      // dispatch(notify());
+      // toast("Please pick a color and size");
+    }
   };
 
   return (
-    <Container>
-      <Navbar />
-      <Announcement />
-      <Wrapper>
-        <ImgContainer>
-          {isLoading && <Skeleton width="100%" height="90vh" />}
-          <Image src={products.img} />
-        </ImgContainer>
+    <>
+      <Container>
+        <Navbar />
+        <Announcement />
+        <Wrapper>
+          <ImgContainer>
+            {isLoading && <Skeleton width="100%" height="90vh" />}
+            <Image src={products.img} />
+          </ImgContainer>
 
-        <InfoContainer>
-          <Title>{products.title || <Skeleton />}</Title>
-          <Desc>{products.desc || <Skeleton />}</Desc>
-          <Price>Rp. {products.price || <Skeleton />}</Price>
-          <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              {products.color?.map((e) => (
-                <FilterColor color={e} key={e} onClick={() => setColor(e)} />
-              ))}
-            </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize onChange={(e) => setSize(e.target.value)}>
-                {products.size?.map((e) => (
-                  <FilterSizeOption key={e}>{e}</FilterSizeOption>
+          <InfoContainer>
+            <Title>{products.title || <Skeleton />}</Title>
+            <Desc>{products.desc || <Skeleton />}</Desc>
+            <Price>Rp. {products.price || <Skeleton />}</Price>
+            <FilterContainer>
+              <Filter>
+                <FilterTitle>Color</FilterTitle>
+                {products.color?.map((c) => (
+                  <FilterColor color={c} key={c} onClick={() => setColor(c)} />
                 ))}
-              </FilterSize>
-            </Filter>
-          </FilterContainer>
-          <AddContainer>
-            <AmountContainer>
-              <Remove onClick={() => handleAmount("decrease")} />
-              <Amount>{amount}</Amount>
-              <Add onClick={() => handleAmount("increase")} />
-            </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
-          </AddContainer>
-        </InfoContainer>
-      </Wrapper>
-      <Newsletter />
-      <Footer />
-    </Container>
+              </Filter>
+              <Filter>
+                <FilterTitle>Size</FilterTitle>
+                <FilterSize onChange={(s) => setSize(s.target.value)}>
+                  <FilterSizeOption>Select</FilterSizeOption>
+                  {products.size?.map((e) => (
+                    <FilterSizeOption key={e}>{e}</FilterSizeOption>
+                  ))}
+                </FilterSize>
+              </Filter>
+            </FilterContainer>
+            <AddContainer>
+              <AmountContainer>
+                <Remove onClick={() => handleAmount("decrease")} />
+                <Amount>{amount}</Amount>
+                <Add onClick={() => handleAmount("increase")} />
+              </AmountContainer>
+              <Button onClick={handleClick}>ADD TO CART</Button>
+            </AddContainer>
+          </InfoContainer>
+        </Wrapper>
+        <Newsletter />
+        <Footer />
+      </Container>
+      <ToastContainer />
+    </>
   );
 };
 
