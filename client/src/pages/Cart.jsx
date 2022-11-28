@@ -5,8 +5,10 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
+import { userReq } from "../reqMethod";
+import { useNavigate } from "react-router-dom";
 
 const KEY = process.env.REACT_APP_STRIPE;
 // const KEY =
@@ -163,11 +165,24 @@ const Button = styled.button`
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setstripeToken] = useState(null);
+  const navigate = useNavigate();
 
   const onToken = (token) => {
     setstripeToken(token);
   };
-  console.log(stripeToken);
+
+  useEffect(() => {
+    const makeReq = async () => {
+      try {
+        const res = await userReq.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: 500,
+        });
+        navigate("/success", { state: { data: res.data } });
+      } catch (error) {}
+    };
+    stripeToken && makeReq();
+  }, [cart.total, stripeToken, navigate]);
 
   return (
     <Container>
