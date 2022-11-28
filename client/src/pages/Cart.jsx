@@ -5,10 +5,12 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
-import StripeCheckout from "react-stripe-checkout";
 import { useState } from "react";
+import StripeCheckout from "react-stripe-checkout";
 
-const KEY = process.env.STRIPE_CLIENT;
+const KEY = process.env.REACT_APP_STRIPE;
+// const KEY =
+//   "pk_test_51M6SReAmysRSXTA4vH9u6nMpWSljS5edi54CsiXGWfNQDeUfRlUVyiNC6O7CtgruDgjxMLd9CE4H10cM5r5juGF300yQ3l7rRe";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
