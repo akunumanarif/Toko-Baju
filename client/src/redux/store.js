@@ -4,5 +4,6 @@ import cartReduser from "./cartRedux";
 export default configureStore({
   reducer: {
     cart: cartReduser,
+    user: userReduser,
   },
 });
