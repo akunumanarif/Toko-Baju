@@ -8,13 +8,19 @@ const userSlice = createSlice({
     error: false,
   },
   reducers: {
-    addProduct: (state, action) => {
-      state.quantity += 1;
-      state.products.push(action.payload);
-      state.total += action.payload.price * action.payload.amount;
+    loginStart=(state)=>{
+        state.isFetching = true;
+    },
+    loginSuccess=(state, action)=>{
+        state.isFetching = false;
+        state.currentUser = action.payload;
+    },
+    loginError=(state, action)=>{
+        state.isFetching = false;
+        state.error = true;
     },
   },
 });
 
-export const { addProduct } = userSlice.actions;
+export const { loginStart, loginSuccess, loginError } = userSlice.actions;
 export default userSlice.reducer;
