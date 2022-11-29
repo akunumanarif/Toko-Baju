@@ -1,3 +1,4 @@
+dotenv.config();
 import express from "express";
 const app = express();
 import mongoose from "mongoose";
@@ -9,8 +10,6 @@ import cartRoute from "./routes/cart.js";
 import orderRoute from "./routes/order.js";
 import stripeRoute from "./routes/stripe.js";
 import cors from "cors";
-
-dotenv.config();
 
 mongoose
   .connect(process.env.MONGO_URI)
