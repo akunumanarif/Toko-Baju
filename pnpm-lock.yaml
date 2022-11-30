@@ -11,6 +11,7 @@ specifiers:
   nodemon: ^2.0.20
   react-loading-skeleton: ^3.1.0
   react-redux: ^8.0.5
+  redux-persist: ^6.0.0
   stripe: ^11.1.0
 
 dependencies:
@@ -24,6 +25,7 @@ dependencies:
   nodemon: 2.0.20
   react-loading-skeleton: 3.1.0
   react-redux: 8.0.5
+  redux-persist: 6.0.0
   stripe: 11.1.0
 
 packages:
@@ -1653,6 +1655,16 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+    dev: false
+
+  /redux-persist/6.0.0:
+    resolution: {integrity: sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==}
+    peerDependencies:
+      react: '>=16'
+      redux: '>4.0.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
     dev: false
 
   /redux-thunk/2.4.2_redux@4.2.0:
