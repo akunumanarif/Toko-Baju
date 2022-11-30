@@ -23,6 +23,7 @@
     "nodemon": "^2.0.20",
     "react-loading-skeleton": "^3.1.0",
     "react-redux": "^8.0.5",
+    "redux-persist": "^6.0.0",
     "stripe": "^11.1.0"
   }
 }
