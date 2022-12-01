@@ -7,8 +7,7 @@ import { useSelector } from "react-redux";
 
 export default function Product() {
   const location = useLocation();
-  console.log(location);
-  const productId = location.pathname.split("/")[1];
+  const productId = location.pathname.split("/")[2];
   const product = useSelector((state) =>
     state.product.products.find((product) => product._id === productId)
   );
@@ -26,8 +25,8 @@ export default function Product() {
         </div>
         <div className="productTopRight">
           <div className="productInfoTop">
-            <img src={product.img} alt="" className="productInfoImg" />
-            <span className="productInfoTitle">Apple Pods</span>
+            <img src={product?.img} alt="" className="productInfoImg" />
+            <span className="productInfoTitle">{product.title}</span>
           </div>
           <div className="productInfoBottom">
             <div className="poductInfoItem">
@@ -50,25 +49,21 @@ export default function Product() {
         <form className="productForm">
           <div className="productFormLeft">
             <label>Product Name</label>
-            <input type="text" placeholder="Apple Airpod" />
+            <input type="text" placeholder={product.title} />
             <label>Stock</label>
             <select name="stock" id="stockId">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
             </select>
-            <label>Active</label>
+            {/* <label>Active</label>
             <select name="active" id="active">
               <option value="yes">Yes</option>
               <option value="no">No</option>
-            </select>
+            </select> */}
           </div>
           <div className="productFormRight">
             <div className="productUpload">
-              <img
-                src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
-                className="productUploadImg"
-              />
+              <img src={product.img} alt="" className="productUploadImg" />
               <label for="file">
                 <Publish />
               </label>
