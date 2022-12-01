@@ -1,6 +1,20 @@
 import "./widgetLarge.css";
+import { useState, useEffect } from "react";
+import { userRequest } from "../../../requestMethods";
 
 export default function WidgetLarge() {
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    const getOrders = async () => {
+      try {
+        const res = await userRequest.get("/order/all");
+        setOrders(res.data);
+      } catch (error) {
+        console.log("Login dulu");
+      }
+    };
+    getOrders();
+  }, []);
   const Button = ({ type }) => {
     return <button className={"widgetLargeButton " + type}>{type}</button>;
   };
@@ -16,66 +30,18 @@ export default function WidgetLarge() {
             <th className="widgetLargeTableHeader">Amount</th>
             <th className="widgetLargeTableHeader">Status</th>
           </tr>
-          <tr className="widgetLargeUser">
-            <td className="widgetLargeSecondHeader">
-              <img
-                src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
-                className="widgetUserImage"
-              />
-              <span>Susan Antonov</span>
-            </td>
-            <td className="widgetLargeDate">Jun 20 2021</td>
-            <td className="widgetLargeAmount">$220000</td>
-            <td className="widgetLargeStatus">
-              <Button type="Approved" />
-            </td>
-          </tr>
-          <tr className="widgetLargeUser">
-            <td className="widgetLargeSecondHeader">
-              <img
-                src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
-                className="widgetUserImage"
-              />
-              <span>Susan Antonov</span>
-            </td>
-            <td className="widgetLargeDate">Jun 20 2021</td>
-            <td className="widgetLargeAmount">$220000</td>
-            <td className="widgetLargeStatus">
-              <Button type="Pending" />
-            </td>
-          </tr>
-          <tr className="widgetLargeUser">
-            <td className="widgetLargeSecondHeader">
-              <img
-                src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
-                className="widgetUserImage"
-              />
-              <span>Susan Antonov</span>
-            </td>
-            <td className="widgetLargeDate">Jun 20 2021</td>
-            <td className="widgetLargeAmount">$220000</td>
-            <td className="widgetLargeStatus">
-              <Button type="Declined" />
-            </td>
-          </tr>
-          <tr className="widgetLargeUser">
-            <td className="widgetLargeSecondHeader">
-              <img
-                src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt=""
-                className="widgetUserImage"
-              />
-              <span>Susan Antonov</span>
-            </td>
-            <td className="widgetLargeDate">Jun 20 2021</td>
-            <td className="widgetLargeAmount">$220000</td>
-            <td className="widgetLargeStatus">
-              <Button type="Approved" />
-            </td>
-          </tr>
+          {orders.map((order) => (
+            <tr className="widgetLargeOrders" key={order._id}>
+              <td className="widgetLargeSecondHeader">
+                <span>{order.userId}</span>
+              </td>
+              <td className="widgetLargeDate">{order.createdAt}</td>
+              <td className="widgetLargeAmount">$ {order.amount}</td>
+              <td className="widgetLargeStatus">
+                <Button type={order.status} />
+              </td>
+            </tr>
+          ))}
         </thead>
       </table>
     </div>
