@@ -71,6 +71,7 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
+  const user = useSelector((state) => state.user.currentUser);
   return (
     <Container>
       <Wrapper>
@@ -82,11 +83,17 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <img src={imgLogo} width="10%" alt="" />
+          <Link to="/">
+            <img src={imgLogo} width="10%" alt="" />
+          </Link>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+          <Link to="/register">
+            <MenuItem>REGISTER</MenuItem>
+          </Link>
+          <Link to="/login">
+            <MenuItem>{user ? `${user.username}` : "SIGN IN"}</MenuItem>
+          </Link>
           <Link to={"/cart"}>
             <MenuItem>
               <Badge
