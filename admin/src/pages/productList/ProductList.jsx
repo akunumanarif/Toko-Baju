@@ -2,14 +2,12 @@ import React from "react";
 import "./productList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteForever } from "@material-ui/icons";
-import { productRows } from "../../dummyData";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux/apiCalls";
+import { deleteProduct, getProducts } from "../../redux/apiCalls";
 
 export default function ProductList() {
-  const [data, setData] = useState(productRows);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
 
@@ -17,8 +15,8 @@ export default function ProductList() {
     getProducts(dispatch);
   }, [dispatch]);
 
-  const editProduct = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  const handleDelete = (id) => {
+    deleteProduct(id, dispatch);
   };
 
   const columns = [
@@ -49,13 +47,13 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <React.Fragment>
-            <Link to={"/product/" + params.row.id}>
+            <Link to={"/product/" + params.row._id}>
               <button className="poductEdit">Edit</button>
             </Link>
             <DeleteForever
               className="productDelete"
               onClick={() => {
-                editProduct(params.row.id);
+                handleDelete(params.row._id);
               }}
             />
           </React.Fragment>
