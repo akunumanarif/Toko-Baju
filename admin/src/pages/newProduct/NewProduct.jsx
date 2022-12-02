@@ -11,6 +11,12 @@ export default function NewProduct() {
     });
   };
 
+  const handleCat = (e) => {
+    setCat(e.target.value.split(","));
+  };
+
+  console.log(input);
+
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Product</h1>
@@ -43,7 +49,12 @@ export default function NewProduct() {
         </div>
         <div className="addProductItem">
           <label>Categories</label>
-          <input name="cat" type="text" placeholder="Jaket, Celana" />
+          <input
+            name="cat"
+            type="text"
+            placeholder="Jaket, Celana"
+            onChange={handleCat}
+          />
         </div>
         <div className="addProductItem">
           <label>Price</label>
