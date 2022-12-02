@@ -15,7 +15,9 @@ export default function NewProduct() {
     setCat(e.target.value.split(","));
   };
 
-  console.log(input);
+  const handleClick = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="newProduct">
