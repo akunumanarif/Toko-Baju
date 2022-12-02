@@ -49,7 +49,7 @@ export default function NewProduct() {
           <label>Price</label>
           <input
             name="price"
-            type="text"
+            type="number"
             placeholder="Price"
             onChange={handleChange}
           />
