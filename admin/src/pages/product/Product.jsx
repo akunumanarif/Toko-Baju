@@ -5,6 +5,7 @@ import { productData } from "../../dummyData";
 import { Publish } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import { useState, useMemo, useEffect } from "react";
+import { userRequest } from "../../requestMethods";
 
 export default function Product() {
   const location = useLocation();
@@ -35,8 +36,11 @@ export default function Product() {
   useEffect(() => {
     const getProductStats = async () => {
       try {
-        const res = await userRequest.get("/order/income/?pid=" + productId);
-        res.data.map((item) =>
+        const res = await userRequest.get("/order/incomes?pid=" + productId);
+        const list = res.data.sort((a, b) => {
+          return a._id - b._id;
+        });
+        list.map((item) =>
           setProductStats((prev) => [
             ...prev,
             { name: MONTH[item._id - 1], Sales: item.total },
@@ -45,7 +49,7 @@ export default function Product() {
       } catch (error) {}
     };
     getProductStats();
-  }, [MONTH]);
+  }, [productId, MONTH]);
 
   return (
     <div className="product">
@@ -57,7 +61,11 @@ export default function Product() {
       </div>
       <div className="productTop">
         <div className="productTopLeft">
-          <Chart data={productData} dataKey="Sales" title="Sales Performance" />
+          <Chart
+            data={productStats}
+            dataKey="Sales"
+            title="Sales Performance"
+          />
         </div>
         <div className="productTopRight">
           <div className="productInfoTop">
