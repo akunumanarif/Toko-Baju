@@ -73,7 +73,9 @@ export default function NewProduct() {
           </select>
         </div>
 
-        <button className="addProductButton">Create</button>
+        <button className="addProductButton" onClick={handleClick}>
+          Create
+        </button>
       </form>
     </div>
   );
