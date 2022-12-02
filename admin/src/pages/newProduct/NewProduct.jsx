@@ -1,21 +1,38 @@
 import "./newProduct.css";
+import { useState } from "react";
 
 export default function NewProduct() {
+  const [input, setInput] = useState({});
+  const [cat, setCat] = useState([]);
+  const [file, setFile] = useState(null);
+
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Product</h1>
       <form className="addProductForm">
         <div className="addProductItem">
           <label>Image</label>
-          <input type="file" id="file" />
+          <input
+            type="file"
+            id="file"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
         </div>
         <div className="addProductItem">
           <label>Title</label>
-          <input type="text" placeholder="Product name" />
+          <input
+            type="text"
+            placeholder="Product name"
+            onChange={handleChange}
+          />
         </div>
         <div className="addProductItem">
           <label>Description</label>
-          <input type="text" placeholder="Description" />
+          <input
+            type="text"
+            placeholder="Description"
+            onChange={handleChange}
+          />
         </div>
         <div className="addProductItem">
           <label>Categories</label>
@@ -23,11 +40,11 @@ export default function NewProduct() {
         </div>
         <div className="addProductItem">
           <label>Price</label>
-          <input type="text" placeholder="Price" />
+          <input type="text" placeholder="Price" onChange={handleChange} />
         </div>
         <div className="addProductItem">
           <label>Stock</label>
-          <select name="" id="">
+          <select onChange={handleChange}>
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
