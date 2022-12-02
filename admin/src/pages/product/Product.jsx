@@ -4,13 +4,49 @@ import Chart from "../../components/charts/Chart";
 import { productData } from "../../dummyData";
 import { Publish } from "@material-ui/icons";
 import { useSelector } from "react-redux";
+import { useState, useMemo, useEffect } from "react";
 
 export default function Product() {
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
+  const [productStats, setProductStats] = useState([]);
   const product = useSelector((state) =>
     state.product.products.find((product) => product._id === productId)
   );
+
+  const MONTH = useMemo(
+    () => [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Agu",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    []
+  );
+
+  useEffect(() => {
+    const getProductStats = async () => {
+      try {
+        const res = await userRequest.get("/order/income/?pid=" + productId);
+        res.data.map((item) =>
+          setProductStats((prev) => [
+            ...prev,
+            { name: MONTH[item._id - 1], Sales: item.total },
+          ])
+        );
+      } catch (error) {}
+    };
+    getProductStats();
+  }, [MONTH]);
+
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -50,6 +86,10 @@ export default function Product() {
           <div className="productFormLeft">
             <label>Product Name</label>
             <input type="text" placeholder={product.title} />
+            <label>Product Description</label>
+            <input type="text" placeholder={product.desc} />
+            <label>Product Price</label>
+            <input type="text" placeholder={product.price} />
             <label>Stock</label>
             <select name="stock" id="stockId">
               <option value="true">Yes</option>
@@ -64,7 +104,7 @@ export default function Product() {
           <div className="productFormRight">
             <div className="productUpload">
               <img src={product.img} alt="" className="productUploadImg" />
-              <label for="file">
+              <label htmlFor="file">
                 <Publish />
               </label>
               <input type="file" id="file" style={{ display: "none" }} />
