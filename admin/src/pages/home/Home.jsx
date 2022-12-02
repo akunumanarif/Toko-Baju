@@ -1,7 +1,6 @@
 import Chart from "../../components/charts/Chart";
 import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
 import "./home.css";
-import { userData } from "../../data/dummyData";
 import WidgetSmall from "../../components/widgets/widgetSmall/WidgetSmall";
 import WidgetLarge from "../../components/widgets/widgetLarge/WidgetLarge";
 import React, { useState, useEffect, useMemo } from "react";
