@@ -5,6 +5,11 @@ export default function NewProduct() {
   const [input, setInput] = useState({});
   const [cat, setCat] = useState([]);
   const [file, setFile] = useState(null);
+  const handleChange = (e) => {
+    setInput((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
 
   return (
     <div className="newProduct">
@@ -21,6 +26,7 @@ export default function NewProduct() {
         <div className="addProductItem">
           <label>Title</label>
           <input
+            name="title"
             type="text"
             placeholder="Product name"
             onChange={handleChange}
@@ -29,6 +35,7 @@ export default function NewProduct() {
         <div className="addProductItem">
           <label>Description</label>
           <input
+            name="desc"
             type="text"
             placeholder="Description"
             onChange={handleChange}
@@ -36,15 +43,20 @@ export default function NewProduct() {
         </div>
         <div className="addProductItem">
           <label>Categories</label>
-          <input type="text" placeholder="Jaket, Celana" />
+          <input name="cat" type="text" placeholder="Jaket, Celana" />
         </div>
         <div className="addProductItem">
           <label>Price</label>
-          <input type="text" placeholder="Price" onChange={handleChange} />
+          <input
+            name="price"
+            type="text"
+            placeholder="Price"
+            onChange={handleChange}
+          />
         </div>
         <div className="addProductItem">
           <label>Stock</label>
-          <select onChange={handleChange}>
+          <select name="inStock" onChange={handleChange}>
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
