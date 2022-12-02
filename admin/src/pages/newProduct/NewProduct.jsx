@@ -1,5 +1,6 @@
 import "./newProduct.css";
 import { useState } from "react";
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 
 export default function NewProduct() {
   const [input, setInput] = useState({});
