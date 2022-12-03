@@ -15,6 +15,7 @@ specifiers:
   react-scripts: 4.0.3
   react-stripe-checkout: ^2.6.3
   react-toastify: '4.1'
+  redux-persist: ^6.0.0
   styled-components: ^5.3.1
   web-vitals: ^1.0.1
 
@@ -33,6 +34,7 @@ dependencies:
   react-scripts: 4.0.3_react@17.0.2
   react-stripe-checkout: 2.6.3
   react-toastify: 4.1.0_sfoxds7t5ydpegc3knd667wn6m
+  redux-persist: 6.0.0_react@17.0.2
   styled-components: 5.3.6_sfoxds7t5ydpegc3knd667wn6m
   web-vitals: 1.1.2
 
@@ -11582,6 +11584,18 @@ packages:
     dependencies:
       indent-string: 4.0.0
       strip-indent: 3.0.0
+    dev: false
+
+  /redux-persist/6.0.0_react@17.0.2:
+    resolution: {integrity: sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==}
+    peerDependencies:
+      react: '>=16'
+      redux: '>4.0.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /regenerate-unicode-properties/10.1.0:
