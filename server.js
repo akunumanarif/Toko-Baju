@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 });
 
 const corsOrigin = {
-  origin: "http://localhost:3000",
+  origin: "http://localhost:3000/",
   credentials: true,
   optionSuccessStatus: 200,
 };
