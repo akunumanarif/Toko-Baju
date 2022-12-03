@@ -22,7 +22,7 @@ const Products = ({ cat, sort, filters }) => {
         const res = await axios.get(
           cat
             ? `http://localhost:5000/api/products?category=${cat}`
-            : `http://localhost:5000/api/products`
+            : `https://doubtful-tuxedo-slug.cyclic.app`
         );
         setisLoading(false);
         setProducts(res.data);

@@ -35,8 +35,14 @@ app.get("/", (req, res) => {
   });
 });
 
+const corsOrigin = {
+  origin: "http://localhost:3000",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
 //? CORS
-app.use(cors());
+app.use(cors(corsOrigin));
 
 //? ROUTES
 app.use("/api/auth", regRoute);
