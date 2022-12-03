@@ -77,7 +77,10 @@ router.get("/", async (req, res) => {
       products = await ProductModel.find();
     }
 
-    res.status(200).json(products);
+    res
+      .status(200)
+      .setHeader("Access-Control-Allow-Origin", "*")
+      .json(products);
   } catch (error) {
     res.status(500).json(error);
   }
