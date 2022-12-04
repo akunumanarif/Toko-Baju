@@ -21,7 +21,7 @@ const Products = ({ cat, sort, filters }) => {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:5000/api/products?category=${cat}`
+            ? `https://doubtful-tuxedo-slug.cyclic.app/api/products?category=${cat}`
             : `https://doubtful-tuxedo-slug.cyclic.app/api/products`
         );
         setisLoading(false);
