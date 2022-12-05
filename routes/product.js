@@ -11,7 +11,10 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
 
   try {
     const addProduct = await newProduct.save();
-    res.status(201).json(addProduct);
+    res
+      .status(201)
+      .setHeader("Access-Control-Allow-Origin", "*")
+      .json(addProduct);
   } catch (error) {
     res.status(500).json(error);
     console.log(error);
@@ -28,7 +31,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
       { new: true }
     );
     const { password, ...others } = updatedProduct._doc;
-    res.status(202).json(others);
+    res.status(202).setHeader("Access-Control-Allow-Origin", "*").json(others);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -39,7 +42,10 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     await ProductModel.findByIdAndDelete(req.params.id);
-    res.status(200).json("Product has been deleted");
+    res
+      .status(200)
+      .setHeader("Access-Control-Allow-Origin", "*")
+      .json("Product has been deleted");
   } catch (error) {
     res.status(500).json(error);
   }
@@ -51,7 +57,7 @@ router.get("/find/:id", async (req, res) => {
   try {
     const product = await ProductModel.findById(req.params.id);
 
-    res.status(200).json(product);
+    res.status(200).setHeader("Access-Control-Allow-Origin", "*").json(product);
   } catch (error) {
     res.status(500).json(error);
   }
